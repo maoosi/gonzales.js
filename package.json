@@ -1,0 +1,46 @@
+{
+    "name": "gonzales.js",
+    "version": "1.0.0",
+    "description": "Speedy JS library for custom mouse pointers.",
+    "repository": "maoosi/gonzales.js",
+    "main": "dist/gonzales.js",
+    "module": "dist/gonzales.mjs",
+    "jsnext:main": "dist/gonzales.mjs",
+    "scripts": {
+        "prebuild": "eslint src test",
+        "build": "rollup -c",
+        "watch": "rollup -c -w",
+        "pretest": "npm run build",
+        "test": "jest test/gonzales.test.js"
+    },
+    "homepage": "https://github.com/maoosi/gonzales.js#readme",
+    "author": "maoosi <hello@sylvainsimao.fr>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/maoosi/gonzales.js/issues"
+    },
+    "keywords": [
+        "es6",
+        "mouse",
+        "cursor",
+        "pointer",
+        "javascript"
+    ],
+    "dependencies": {},
+    "devDependencies": {
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "jest": "^21.1.0",
+        "babel-core": "^6.24.1",
+        "babel-eslint": "^7.2.1",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-register": "^6.24.1",
+        "babelrc-rollup": "^3.0.0",
+        "eslint": "^3.19.0",
+        "rollup": "^0.41.6",
+        "rollup-plugin-babel": "^2.7.1",
+        "rollup-plugin-uglify": "^1.0.1",
+        "rollup-watch": "^3.2.2",
+        "uglify-js-harmony": "^2.7.5"
+    }
+}
