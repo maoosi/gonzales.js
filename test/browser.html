@@ -11,18 +11,78 @@
     <style media="screen">
         body {
             margin: 0;
+            background: #333;
+            overflow: hidden;
         }
+        #my-cursor {
+            transition: transform .15s ease;
+            position: relative;
+            width: 52px;
+            height: 52px;
+            background-image: url('cursors/cursor.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        @keyframes animRing {
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(-50%) scale(1);
+                border-color: #12E58D;
+                opacity: 0;
+            }
+        }
+        #ring {
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            border: 2px solid #fff;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translateX(-50%) translateY(-50%) scale(0);
+            opacity: 0;
+        }
+        #my-cursor.-mousedown {
+            transition: transform 0s;
+            transform: translateX(-50%) translateY(-50%) scale(0.9);
+            background-image: url('cursors/cursor_mousedown.svg');
+        }
+        #my-cursor.-mouseup { background-image: url('cursors/cursor_mouseup.svg'); }
+        #my-cursor.-mouseup #ring { animation: animRing .15s ease-out; }
     </style>
 
 </head>
 <body>
 
-    <div id="elem"></div>
+    <div id="my-cursor"><div id="ring"></div></div>
 
     <script src="../dist/gonzales.js"></script>
     <script>
-        const cursors = Gonzales()
-        cursors.add('cursor-01', '#my-custom-cursor')
+
+        const c1 = Gonzales('#my-cursor')
+
+        c1.on('mousedown', (el) => {
+            el.classList.add('-mousedown')
+        })
+
+        c1.on('mouseup', (el) => {
+            el.classList.remove('-mousedown')
+            el.classList.add('-mouseup')
+
+            setTimeout(() => {
+                el.classList.remove('-mouseup')
+            }, 200)
+        })
+
+        c1.activate()
+
+        // setTimeout(() => {
+        //     c1.destroy()
+        // }, 2000)
+
     </script>
 
 </body>
